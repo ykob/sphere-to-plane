@@ -1,9 +1,9 @@
 {
-  "name": "gulpfiles",
+  "name": "sphere-to-plane",
   "description": "",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ykob/gulpfile"
+    "url": "https://github.com/ykob/sphere-to-plane"
   },
   "private": true,
   "scripts": {
