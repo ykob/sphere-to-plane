@@ -1,0 +1,95 @@
+@mixin fontSize($size: 14) {
+  font-size: $size + px;
+  font-size: $size / 16 * 1rem;
+}
+@mixin clearfix {
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+@mixin icon($src, $width, $height, $display) {
+  width: $width;
+  height: $height;
+  content: '';
+  display: $display;
+  background-image: url($src);
+  background-size: $width, $height;
+  background-repeat: no-repeat;
+}
+@mixin flexWidth {
+  width: 100%;
+  min-width: $min-width;
+  max-width: $max-width;
+  margin-right: auto;
+  margin-left: auto;
+}
+@mixin fullWidth {
+  width: 100%;
+  min-width: $min-width;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+//
+// rwd break points
+// pc-l | pc-s | tablet | mobile
+//
+// ○ | - | - | -
+@mixin l-pc-l {
+  @media all and (min-width: $break-point-pc + 0.01px) {
+    @content;
+  }
+}
+// - | ○ | - | -
+@mixin l-pc-s {
+  @media all and (min-width: $break-point-tablet + 0.01px) and (max-width: $break-point-pc) {
+    @content;
+  }
+}
+// - | - | ○ | -
+@mixin l-tablet {
+  @media all and (min-width: $break-point-mobile + 0.01px) and (max-width: $break-point-tablet) {
+    @content;
+  }
+}
+// - | - | - | ○
+@mixin l-mobile {
+  @media all and (max-width: $break-point-mobile) {
+    @content;
+  }
+}
+// ○ | ○ | - | -
+@mixin l-pc-all {
+  @media all and (min-width: $break-point-tablet + 0.01px) {
+    @content;
+  }
+}
+// - | ○ | ○ | -
+@mixin l-pc-and-tablet {
+  @media all and (min-width: $break-point-mobile + 0.01px) and (max-width: $break-point-pc) {
+    @content;
+  }
+}
+@mixin l-tablet-and-mobile {
+// - | - | ○ | ○
+  @media all and (max-width: $break-point-tablet) {
+    @content;
+  }
+}
+// ○ | ○ | ○ | -
+@mixin l-more-than-mobile {
+  @media all and (min-width: $break-point-mobile + 0.01px) {
+    @content;
+  }
+}
+// - | ○ | ○ | ○
+@mixin l-less-than-pc {
+  @media all and (max-width: $break-point-pc) {
+    @content;
+  }
+}

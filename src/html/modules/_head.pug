@@ -1,0 +1,40 @@
+- var website_domain = "http://www.tplh.net"
+- var website_name = ""
+- var meta_title_merge = ""
+- var meta_keywords_base = ""
+- var meta_keywords_merge = ""
+- var meta_path_merge = meta_path;
+- var meta_ogp_description = meta_description
+
+if (meta_title != "")
+  - meta_title_merge = meta_title + " │ " + website_name;
+else
+  - meta_title_merge = website_name
+
+if (meta_keywords != "")
+  - meta_keywords_merge = meta_keywords + "," + meta_keywords_base;
+else
+  - meta_keywords_merge = meta_keywords_base;
+
+meta(charset="utf-8")
+meta(http-equiv="X-UA-Compatible", content="IE=edge")
+title #{meta_title_merge}
+meta(name="viewport", content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1")
+meta(name="description", content = meta_description)
+meta(name="keywords", content = meta_keywords_merge)
+meta(name="theme-color", content="#ffffff")
+link(rel="shortcut icon" href="/img/common/icon.ico")
+link(rel="apple-touch-icon" href="/img/common/app-icon.ico")
+link(rel="stylesheet" href="/css/main.css")
+
+meta(property="og:title", content = meta_title_merge)
+meta(property="og:site_name", content = website_name)
+meta(property="og:type", content="website")
+meta(property="og:description", content = meta_ogp_description)
+meta(property="og:url", content = website_domain + meta_path)
+meta(property="og:image", content = website_domain + '/img/common/' + meta_ogp_img)
+
+meta(name="twitter:card", content="summary_large_image")
+meta(name="twitter:title", content = meta_title_merge)
+meta(name="twitter:description", content = meta_ogp_description)
+meta(name="twitter:image", content = website_domain + '/img/common/' + meta_ogp_img)
