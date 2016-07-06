@@ -32,7 +32,8 @@ module.exports.scripts = {
         babelrc: false,
         presets: ['es2015']
       }],
-      'envify'
+      'envify',
+      'glslify'
     ]
   },
   dest: `${DIR.DEST}${DIR.PATH}/js`
