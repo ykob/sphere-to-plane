@@ -2,10 +2,8 @@ html {
   height: 100%;
 }
 body {
-  min-width: $min-width;
   min-height: 100%;
-  overflow-y: scroll;
-  font-family: $font-jp;
+  overflow: hidden;
 }
 ::selection {
   color: #fff;
