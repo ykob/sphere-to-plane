@@ -8,7 +8,7 @@ export default class Sphere {
     this.noise_y = 20;
     this.noise_z = 20;
     this.mesh = new THREE.Mesh(
-      new THREE.SphereGeometry(1, 128, 128),
+      new THREE.SphereGeometry(1, 256, 256),
       new THREE.ShaderMaterial({
         uniforms: {
           time: {
