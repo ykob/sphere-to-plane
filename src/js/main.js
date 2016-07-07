@@ -22,6 +22,15 @@ const setEvent = () => {
     resizeWindow();
   });
 }
+const initDatGui = () => {
+  const gui = new dat.GUI();
+  const controller = {
+    radius: gui.add(sphere, 'radius', 0, 1000)
+  }
+  controller.radius.onChange((value) => {
+    sphere.mesh.material.uniforms.radius.value = value;
+  });
+}
 const render = () => {
   renderer.render(scene, camera);
 }
@@ -39,6 +48,7 @@ const init = () => {
   scene.add(sphere.mesh);
 
   setEvent();
+  initDatGui();
   resizeWindow();
   renderLoop();
 }

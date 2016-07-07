@@ -1,6 +1,6 @@
 uniform float radius;
 
-varying vec3 vPosition;
+varying vec4 vPosition;
 
 void main(void) {
   float light = (-vPosition.y / radius + 1.0) / 10.0;

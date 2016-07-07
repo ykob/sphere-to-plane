@@ -1,6 +1,11 @@
-varying vec3 vPosition;
+uniform float radius;
+
+varying vec4 vPosition;
+
+#pragma glslify: scaleMatrix = require(./modules/scale_matrix);
 
 void main(void) {
-  vPosition = position;
-  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+  vec4 update_position = scaleMatrix(vec3(radius)) * vec4(position, 1.0);
+  vPosition = update_position;
+  gl_Position = projectionMatrix * modelViewMatrix * update_position;
 }
