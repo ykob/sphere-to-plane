@@ -7,8 +7,9 @@ const renderer = new THREE.WebGLRenderer({
 });
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 10000);
+const clock = new THREE.Clock();
 
-const sphere = new Sphere(200);
+const sphere = new Sphere();
 
 const resizeWindow = () => {
   canvas.width = window.innerWidth;
@@ -25,13 +26,30 @@ const setEvent = () => {
 const initDatGui = () => {
   const gui = new dat.GUI();
   const controller = {
-    radius: gui.add(sphere, 'radius', 0, 1000)
+    radius: gui.add(sphere, 'radius', 0, 1000),
+    noise_a: gui.add(sphere, 'noise_a', 0, 1000),
+    noise_x: gui.add(sphere, 'noise_x', 0, 100),
+    noise_y: gui.add(sphere, 'noise_y', 0, 100),
+    noise_z: gui.add(sphere, 'noise_z', 0, 100),
   }
   controller.radius.onChange((value) => {
     sphere.mesh.material.uniforms.radius.value = value;
   });
+  controller.noise_a.onChange((value) => {
+    sphere.mesh.material.uniforms.noise_a.value = value;
+  });
+  controller.noise_x.onChange((value) => {
+    sphere.mesh.material.uniforms.noise_x.value = value;
+  });
+  controller.noise_y.onChange((value) => {
+    sphere.mesh.material.uniforms.noise_y.value = value;
+  });
+  controller.noise_z.onChange((value) => {
+    sphere.mesh.material.uniforms.noise_z.value = value;
+  });
 }
 const render = () => {
+  sphere.render(clock.getDelta());
   renderer.render(scene, camera);
 }
 const renderLoop = () => {
