@@ -1,4 +1,4 @@
-import Sphere from './modules/sphere.js';
+import SpherePlaneObject from './modules/sphere_plane_object.js';
 
 const canvas = document.getElementById('canvas-webgl');
 const renderer = new THREE.WebGLRenderer({
@@ -10,7 +10,7 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 10000);
 const clock = new THREE.Clock();
 
-const sphere = new Sphere();
+const sp_obj = new SpherePlaneObject();
 
 const resizeWindow = () => {
   canvas.width = window.innerWidth;
@@ -27,30 +27,31 @@ const setEvent = () => {
 const initDatGui = () => {
   const gui = new dat.GUI();
   const controller = {
-    radius: gui.add(sphere, 'radius', 0, 1000),
-    noise_a: gui.add(sphere, 'noise_a', 0, 1000),
-    noise_x: gui.add(sphere, 'noise_x', 0, 100),
-    noise_y: gui.add(sphere, 'noise_y', 0, 100),
-    noise_z: gui.add(sphere, 'noise_z', 0, 100),
+    radius: gui.add(sp_obj, 'radius', 0, 1000),
+    noise_a: gui.add(sp_obj, 'noise_a', 0, 500),
+    noise_x: gui.add(sp_obj, 'noise_x', -20, 20),
+    noise_y: gui.add(sp_obj, 'noise_y', -20, 20),
+    noise_z: gui.add(sp_obj, 'noise_z', -20, 20),
+    plane: gui.add(sp_obj, 'plane', -20, 20),
   }
   controller.radius.onChange((value) => {
-    sphere.mesh.material.uniforms.radius.value = value;
+    sp_obj.mesh.material.uniforms.radius.value = value;
   });
   controller.noise_a.onChange((value) => {
-    sphere.mesh.material.uniforms.noise_a.value = value;
+    sp_obj.mesh.material.uniforms.noise_a.value = value;
   });
   controller.noise_x.onChange((value) => {
-    sphere.mesh.material.uniforms.noise_x.value = value;
+    sp_obj.mesh.material.uniforms.noise_x.value = value;
   });
   controller.noise_y.onChange((value) => {
-    sphere.mesh.material.uniforms.noise_y.value = value;
+    sp_obj.mesh.material.uniforms.noise_y.value = value;
   });
   controller.noise_z.onChange((value) => {
-    sphere.mesh.material.uniforms.noise_z.value = value;
+    sp_obj.mesh.material.uniforms.noise_z.value = value;
   });
 }
 const render = () => {
-  sphere.render(clock.getDelta());
+  sp_obj.render(clock.getDelta());
   renderer.render(scene, camera);
 }
 const renderLoop = () => {
@@ -61,10 +62,10 @@ const renderLoop = () => {
 const init = () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setClearColor(0xffffff, 0.0);
-  camera.position.set(1000, 1000, 1000);
+  camera.position.set(0, 0, 2000);
   camera.lookAt(new THREE.Vector3());
 
-  scene.add(sphere.mesh);
+  scene.add(sp_obj.mesh);
 
   setEvent();
   initDatGui();

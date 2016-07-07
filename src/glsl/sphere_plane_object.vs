@@ -1,4 +1,8 @@
+attribute vec3 position2;
+
 uniform float time;
+uniform float ease_time;
+uniform float ease_time_max;
 uniform float radius;
 uniform float noise_a;
 uniform float noise_x;
@@ -10,19 +14,23 @@ varying mat4 vInvertMatrix;
 
 #pragma glslify: inverse = require(glsl-inverse);
 #pragma glslify: cnoise3 = require(glsl-noise/classic/3d);
+#pragma glslify: ease = require(glsl-easings/circular-in-out);
 #pragma glslify: scaleMatrix = require(./modules/scale_matrix);
 
 void main(void) {
+
+  float step = ease(clamp(ease_time, 0.0, ease_time_max) / ease_time_max);
+  vec3 update_position = position * (1.0 - step) + position2 * step;
   float noise = cnoise3(
       vec3(
-        position.x * noise_x / 10.0 + time,
-        position.y * noise_y / 10.0 + time,
-        position.z * noise_z / 10.0 + time
+        update_position.x * noise_x + time,
+        update_position.y * noise_y + time,
+        update_position.z * noise_z + time
       )
-    ) * noise_a;
+    ) * (1.0 - step);
   mat4 scale_matrix = scaleMatrix(vec3(radius));
-  vec4 scale_position = scale_matrix * vec4(position, 1.0);
-  vec4 noise_position = vec4(scale_position.xyz + position * noise, 1.0);
+  vec4 scale_position = scale_matrix * vec4(update_position, 1.0);
+  vec4 noise_position = vec4(scale_position.xyz + position * noise * noise_a, 1.0);
   vPosition = noise_position;
   vInvertMatrix = inverse(scale_matrix * modelMatrix);
   gl_Position = projectionMatrix * modelViewMatrix * noise_position;
