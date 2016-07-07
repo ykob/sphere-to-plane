@@ -1,4 +1,4 @@
-mat4 rotationMatrixY(float radian) {
+mat4 rotateMatrixY(float radian) {
   return mat4(
     cos(radian), 0.0, sin(radian), 0.0,
     0.0, 1.0, 0.0, 0.0,
@@ -6,4 +6,4 @@ mat4 rotationMatrixY(float radian) {
     0.0, 0.0, 0.0, 1.0
   );
 }
-#pragma glslify: export(rotationMatrixY)
+#pragma glslify: export(rotateMatrixY)
