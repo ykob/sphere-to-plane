@@ -1,6 +1,6 @@
 - var meta_title = 'sphere to plane';
-- var meta_keywords = 'webgl';
-- var meta_description = 'moving vertices from sphere geometry to plane geometry.';
+- var meta_keywords = 'WebGL, three.js';
+- var meta_description = 'this is WebGL demo that is moving vertices from sphere geometry to plane geometry.';
 - var meta_path = "/";
 - var meta_ogp_img = "ogp.jpg"
 
@@ -9,6 +9,14 @@ html(lang="ja")
   head
     include ./modules/_head.pug
   body
+    .p-contents-summary
+      h1.p-contents-summary__head
+        |#{meta_title}
+      p.p-contents-summary__text
+        |#{meta_description}
+      p.p-contents-summary__link-source
+        a(href="https://github.com/ykob/sphere-to-plane")
+          |view source.
     canvas(id="canvas-webgl", class="p-canvas-webgl")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r78/three.min.js")
     script(src="https://code.jquery.com/jquery-3.0.0.slim.min.js")

@@ -4,8 +4,14 @@ html {
 body {
   min-height: 100%;
   overflow: hidden;
+  color: $color-text;
+  font-family: "Noto Sans";
+}
+a {
+  color: $color-text;
+  text-decoration: none;
 }
 ::selection {
   color: #fff;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.5);
 }
