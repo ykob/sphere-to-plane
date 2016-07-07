@@ -3,10 +3,13 @@ const glslify = require('glslify');
 export default class SpherePlaneObject {
   constructor() {
     this.radius = 250;
-    this.noise_a = 10;
+    this.noise_a = 20;
     this.noise_x = 5;
     this.noise_y = 5;
     this.noise_z = 5;
+    this.plane_noise_a = 30;
+    this.plane_noise_x = 1;
+    this.plane_noise_y = 3;
     this.plane = false;
     this.uniforms = null;
     this.mesh = this.createMesh();
@@ -51,6 +54,18 @@ export default class SpherePlaneObject {
       noise_z: {
         type: 'f',
         value: this.noise_z
+      },
+      plane_noise_a: {
+        type: 'f',
+        value: this.plane_noise_a,
+      },
+      plane_noise_x: {
+        type: 'f',
+        value: this.plane_noise_x
+      },
+      plane_noise_y: {
+        type: 'f',
+        value: this.plane_noise_y
       },
     }
     return new THREE.Mesh(
