@@ -8,7 +8,7 @@ export default class SpherePlaneObject {
     this.noise_y = 5;
     this.noise_z = 5;
     this.plane_noise_a = 30;
-    this.plane_noise_x = 1;
+    this.plane_noise_z = 1;
     this.plane_noise_y = 3;
     this.plane = false;
     this.uniforms = null;
@@ -59,9 +59,9 @@ export default class SpherePlaneObject {
         type: 'f',
         value: this.plane_noise_a,
       },
-      plane_noise_x: {
+      plane_noise_z: {
         type: 'f',
-        value: this.plane_noise_x
+        value: this.plane_noise_z
       },
       plane_noise_y: {
         type: 'f',

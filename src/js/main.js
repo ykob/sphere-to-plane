@@ -33,8 +33,8 @@ const initDatGui = () => {
     noise_y: gui.add(sp_obj, 'noise_y', -20, 20),
     noise_z: gui.add(sp_obj, 'noise_z', -20, 20),
     plane_noise_a: gui.add(sp_obj, 'plane_noise_a', 0, 100),
-    plane_noise_x: gui.add(sp_obj, 'plane_noise_x', -10, 10),
     plane_noise_y: gui.add(sp_obj, 'plane_noise_y', -10, 10),
+    plane_noise_z: gui.add(sp_obj, 'plane_noise_z', -10, 10),
     plane: gui.add(sp_obj, 'plane', -20, 20),
   }
   controller.radius.onChange((value) => {
@@ -55,11 +55,11 @@ const initDatGui = () => {
   controller.plane_noise_a.onChange((value) => {
     sp_obj.mesh.material.uniforms.plane_noise_a.value = value;
   });
-  controller.plane_noise_x.onChange((value) => {
-    sp_obj.mesh.material.uniforms.plane_noise_x.value = value;
-  });
   controller.plane_noise_y.onChange((value) => {
     sp_obj.mesh.material.uniforms.plane_noise_y.value = value;
+  });
+  controller.plane_noise_z.onChange((value) => {
+    sp_obj.mesh.material.uniforms.plane_noise_z.value = value;
   });
 }
 const render = () => {

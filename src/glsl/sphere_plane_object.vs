@@ -9,7 +9,7 @@ uniform float noise_x;
 uniform float noise_y;
 uniform float noise_z;
 uniform float plane_noise_a;
-uniform float plane_noise_x;
+uniform float plane_noise_z;
 uniform float plane_noise_y;
 
 varying vec4 vPosition;
@@ -23,25 +23,26 @@ varying mat4 vInvertMatrix;
 
 void main(void) {
   float step = ease(clamp(ease_time, 0.0, ease_time_max) / ease_time_max);
-  vec3 update_position = position * (1.0 - step) + (rotateMatrix(0.0, radians(-90.0), 0.0) * vec4(position2, 1.0)).xyz * step;
+  vec3 plane_position = (rotateMatrix(0.0, radians(-90.0), 0.0) * vec4(position2, 1.0)).xyz;
+  vec3 ease_position = position * (1.0 - step) + plane_position * step;
   float noise = cnoise3(
       vec3(
-        update_position.x * noise_x + time,
-        update_position.y * noise_y + time,
-        update_position.z * noise_z + time
+        ease_position.x * noise_x + time,
+        ease_position.y * noise_y + time,
+        ease_position.z * noise_z + time
       )
     );
   float noise2 = cnoise3(
       vec3(
-        update_position.x * plane_noise_x + time,
-        update_position.y * plane_noise_y + time,
-        update_position.z + time
+        ease_position.x + time,
+        ease_position.y * plane_noise_y + time,
+        ease_position.z * plane_noise_z + time
       )
     );
   mat4 scale_matrix = scaleMatrix(vec3(radius));
-  vec4 scale_position = scale_matrix * vec4(update_position, 1.0);
+  vec4 scale_position = scale_matrix * vec4(ease_position, 1.0);
   vec4 noise_position = vec4(scale_position.xyz + vec3(
-    position.x * noise * noise_a * (1.0 - step) + (position2.x + plane_noise_a * 2.0) * noise2 * step,
+    position.x * noise * noise_a * (1.0 - step) + (plane_position.x + plane_noise_a * 2.0) * noise2 * step,
     position.y * noise * noise_a * (1.0 - step),
     position.z * noise * noise_a * (1.0 - step)
   ), 1.0);
