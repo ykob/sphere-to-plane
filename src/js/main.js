@@ -35,6 +35,7 @@ const initDatGui = () => {
     plane_noise_a: gui.add(sp_obj, 'plane_noise_a', 0, 100),
     plane_noise_y: gui.add(sp_obj, 'plane_noise_y', -10, 10),
     plane_noise_z: gui.add(sp_obj, 'plane_noise_z', -10, 10),
+    time: gui.add(sp_obj, 'time', 0, 10),
     plane: gui.add(sp_obj, 'plane', -20, 20),
   }
   controller.radius.onChange((value) => {

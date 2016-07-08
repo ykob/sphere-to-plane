@@ -11,6 +11,7 @@ export default class SpherePlaneObject {
     this.plane_noise_z = 1;
     this.plane_noise_y = 3;
     this.plane = false;
+    this.time = 1;
     this.uniforms = null;
     this.mesh = this.createMesh();
   }
@@ -81,7 +82,7 @@ export default class SpherePlaneObject {
     );
   }
   render(time) {
-    this.uniforms.time.value += time;
+    this.uniforms.time.value += time * this.time;
     if (this.plane) {
       if (this.uniforms.ease_time.value < this.uniforms.ease_time_max.value) {
         this.uniforms.ease_time.value += time;
