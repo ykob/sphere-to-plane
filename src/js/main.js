@@ -74,7 +74,7 @@ const renderLoop = () => {
 const init = () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setClearColor(0xffffff, 0.0);
-  camera.position.set(0, 0, 2000);
+  camera.position.set(2000, 0, 0);
   camera.lookAt(new THREE.Vector3());
 
   scene.add(sp_obj.mesh);

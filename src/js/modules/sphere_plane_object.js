@@ -75,7 +75,8 @@ export default class SpherePlaneObject {
         vertexShader: glslify('../../glsl/sphere_plane_object.vs'),
         fragmentShader: glslify('../../glsl/sphere_plane_object.fs'),
         transparent: true,
-        shading: THREE.FlatShading
+        shading: THREE.FlatShading,
+        side: THREE.DoubleSide,
       })
     );
   }
