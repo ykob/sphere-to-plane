@@ -11,8 +11,8 @@ void main(void) {
   // vec3 normal = normalize(vPosition.xyz);
   vec3 inv_light = normalize(vInvertMatrix * vec4(vec3(0.7), 0.0)).xyz;
   float diff = (dot(normal, inv_light) + 1.0) / 2.0;
-  vec4 light = vec4(vec3(0.2) * diff, 1.0);
-  vec4 color = vec4(0.4, 0.5, 0.48, 1.0) + light;
+  vec3 light = vec3(0.2) * diff;
+  vec4 color = vec4(0.6, 0.7, 0.68, 1.0);
   vec4 tex_color = texture2D(texture, vUv);
-  gl_FragColor = color * (1.0 - valid_tex) + tex_color * valid_tex + light;
+  gl_FragColor = (color + vec4(light, 1.0)) * (1.0 - valid_tex) + vec4(tex_color.rgb + light, tex_color.a) * valid_tex;
 }
