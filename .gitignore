@@ -1,9 +1,8 @@
 .DS_Store
 node_modules
-gulp
-src
-dst
 ignore
-gulpfile.js
-package.json
+dst/css/**/*
+dst/js/**/*
+dst/**/*.json
+dst/**/*.html
 .sass-cache
