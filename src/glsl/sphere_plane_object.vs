@@ -13,6 +13,7 @@ uniform float plane_noise_z;
 uniform float plane_noise_y;
 
 varying vec4 vPosition;
+varying vec2 vUv;
 varying mat4 vInvertMatrix;
 
 #pragma glslify: inverse = require(glsl-inverse);
@@ -47,6 +48,7 @@ void main(void) {
     position.z * noise * noise_a * (1.0 - step)
   ), 1.0);
   vPosition = noise_position;
+  vUv = uv;
   vInvertMatrix = inverse(scale_matrix * modelMatrix);
   gl_Position = projectionMatrix * modelViewMatrix * noise_position;
 }

@@ -11,6 +11,7 @@ export default class SpherePlaneObject {
     this.plane_noise_z = 1;
     this.plane_noise_y = 3;
     this.plane = false;
+    this.texture = false;
     this.time = 1;
     this.uniforms = null;
     this.mesh = this.createMesh();
@@ -67,6 +68,14 @@ export default class SpherePlaneObject {
       plane_noise_y: {
         type: 'f',
         value: this.plane_noise_y
+      },
+      texture: {
+        type: 't',
+        value: new THREE.TextureLoader().load('img/texture.png')
+      },
+      valid_tex: {
+        type: 'f',
+        value: 0
       },
     }
     return new THREE.Mesh(
