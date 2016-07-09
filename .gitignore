@@ -5,5 +5,8 @@ dst/css/**/*
 dst/js/**/*
 dst/**/*.json
 dst/**/*.html
-build/**/*
+css/**/*
+js/**/*
+img/**/*
+index.html
 .sass-cache
