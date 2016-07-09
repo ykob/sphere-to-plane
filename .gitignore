@@ -1,12 +1,9 @@
 .DS_Store
 node_modules
+gulp
+src
+dst
 ignore
-dst/css/**/*
-dst/js/**/*
-dst/**/*.json
-dst/**/*.html
-css/**/*
-js/**/*
-img/**/*
-index.html
+gulpfile.js
+package.json
 .sass-cache
