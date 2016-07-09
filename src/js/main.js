@@ -35,6 +35,8 @@ const initDatGui = () => {
     plane_noise_a: gui.add(sp_obj, 'plane_noise_a', 0, 100),
     plane_noise_y: gui.add(sp_obj, 'plane_noise_y', -10, 10),
     plane_noise_z: gui.add(sp_obj, 'plane_noise_z', -10, 10),
+    smoothstep_min: gui.add(sp_obj, 'smoothstep_min', -1, 1),
+    smoothstep_max: gui.add(sp_obj, 'smoothstep_max', -1, 1),
     time: gui.add(sp_obj, 'time', 0, 10),
     plane: gui.add(sp_obj, 'plane'),
     texture: gui.add(sp_obj, 'texture'),
@@ -62,6 +64,12 @@ const initDatGui = () => {
   });
   controller.plane_noise_z.onChange((value) => {
     sp_obj.mesh.material.uniforms.plane_noise_z.value = value;
+  });
+  controller.smoothstep_min.onChange((value) => {
+    sp_obj.mesh.material.uniforms.smoothstep_min.value = value;
+  });
+  controller.smoothstep_max.onChange((value) => {
+    sp_obj.mesh.material.uniforms.smoothstep_max.value = value;
   });
   controller.texture.onChange((value) => {
     sp_obj.mesh.material.uniforms.valid_tex.value = (value) ? 1 : 0;

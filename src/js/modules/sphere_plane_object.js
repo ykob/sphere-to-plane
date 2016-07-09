@@ -10,9 +10,11 @@ export default class SpherePlaneObject {
     this.plane_noise_a = 30;
     this.plane_noise_z = 1;
     this.plane_noise_y = 3;
+    this.time = 1;
+    this.smoothstep_min = -1.0;
+    this.smoothstep_max = 1.0;
     this.plane = false;
     this.texture = false;
-    this.time = 1;
     this.uniforms = null;
     this.mesh = this.createMesh();
   }
@@ -68,6 +70,14 @@ export default class SpherePlaneObject {
       plane_noise_y: {
         type: 'f',
         value: this.plane_noise_y
+      },
+      smoothstep_min: {
+        type: 'f',
+        value: this.smoothstep_min
+      },
+      smoothstep_max: {
+        type: 'f',
+        value: this.smoothstep_max
       },
       texture: {
         type: 't',
