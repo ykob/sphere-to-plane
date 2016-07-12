@@ -19,9 +19,10 @@ export default class SpherePlaneObject {
     this.mesh = this.createMesh();
   }
   createMesh() {
-    const plane_geometry = new THREE.PlaneBufferGeometry(4, 4, 256, 256);
-    const geometry = new THREE.SphereBufferGeometry(1, 256, 256);
+    const plane_geometry = new THREE.PlaneBufferGeometry(4, 4, 64, 64);
+    const geometry = new THREE.SphereBufferGeometry(1, 64, 64);
     geometry.addAttribute('position2', plane_geometry.attributes.position);
+    geometry.setIndex(plane_geometry.index);
     this.uniforms = {
       time: {
         type: 'f',
